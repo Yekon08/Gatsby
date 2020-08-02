@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'gatsby'
 
 import Layout from '../components/Layout'
 
@@ -8,7 +7,7 @@ const Contact = () => {
         <Layout>
             <h1>Contact Page</h1>
             <p>Me contacter blablabla</p>
-            <a href="https://twitter.com/yekon_" target="_blank">Twitter account</a>
+            <a rel="noreferrer" href="https://twitter.com/yekon_" target="_blank">Twitter account</a>
         </Layout>
     )
 }
