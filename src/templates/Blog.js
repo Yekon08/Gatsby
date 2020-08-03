@@ -18,9 +18,9 @@ export const query = graphql`
 const Blog = (props) => {
     return (
         <Layout>
-            <h1>{props.data.mardownRemark.frontmatter.title}</h1>
-            <p>{props.data.mardownRemark.frontmatter.data}</p>
-            <div dangerouslySetInnerHTML={{__html: props.data.mardownRemark.html }}></div>
+            <h1>{props.data.markdownRemark.frontmatter.title}</h1>
+            <p>{props.data.markdownRemark.frontmatter.date}</p>
+            <div dangerouslySetInnerHTML={{__html: props.data.markdownRemark.html }}></div>
         </Layout>
     )
 }
