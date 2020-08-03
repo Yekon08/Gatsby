@@ -6,6 +6,7 @@ date: "02/08/2020"
 I just followed a bootcamp
 
 ![Grass](./grass.jpg)
+![Grass](./grass.jpg)
 
 ## Topics Covered
 
