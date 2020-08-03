@@ -13,16 +13,21 @@ const BlogPage = () => {
                             title
                             date
                         }
+                        fields {
+                            slug
+                        }
                     }
                 }
             }
         }
     `)
 
+    console.log('data: ', data)
+
     const displayPosts = data.allMarkdownRemark.edges.map(post => {
         return (
-            <li>
-                <h2>{post.node.frontmatter.title}</h2>
+            <li key={post.node.fields.slug}>
+                <h2><Link to={`/blog/${post.node.fields.slug}`}>{post.node.frontmatter.title}</Link></h2>
                 <p>{post.node.frontmatter.date}</p>
             </li>
         )
