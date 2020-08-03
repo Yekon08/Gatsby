@@ -5,6 +5,7 @@ import Layout from '../components/Layout'
 import blogStyles from './blog.module.scss'
 
 const BlogPage = () => {
+    // Data from Markdown Posts
     const data = useStaticQuery(graphql`
         query {
             allMarkdownRemark {
@@ -20,10 +21,24 @@ const BlogPage = () => {
                     }
                 }
             }
+
+            # data from contentful CMS
+            allContentfulBlogPost(
+                sort: {
+                    fields: publishedDate,
+                    order: DESC
+                }
+            ) {
+                edges {
+                    node {
+                        title
+                        slug
+                        publishedDate(formatString: "MMMM Do, YYYY")
+                    }
+                }
+            }
         }
     `)
-
-    console.log('data: ', data)
 
     const displayPosts = data.allMarkdownRemark.edges.map(post => {
         return (
@@ -34,11 +49,23 @@ const BlogPage = () => {
         )
     })
 
+    // Data from Contentful CMS Posts
+    const displayContentfulPosts = data.allContentfulBlogPost.edges.map(edge => {
+        return (
+            <li key={edge.node.slug} className={blogStyles.post}>
+                <h2><Link to={`/blog/${edge.node.slug}`}>{edge.node.title}</Link></h2>
+                <p>{edge.node.publishedDate}</p>
+            </li>
+        )
+    })
+
     return(
         <Layout>
             <h1>Blog</h1>
+            <p>2 posts from Markdown and 2 from Contentful CMS</p>
             <ol className={blogStyles.posts}>
                 {displayPosts}
+                {displayContentfulPosts}
             </ol>
         </Layout>
     )
